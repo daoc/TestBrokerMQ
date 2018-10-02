@@ -20,7 +20,7 @@ public class MqttSubscriber implements MqttCallback {
     
     public static void main(String[] argv) throws MqttException {
         String broker = "tcp://192.168.56.101:1883";
-        String topic = "holamqtt";
+        String topic = "IoT";
         String clientId = "TestMqttSubscriber_" + MqttClient.generateClientId();
         
         MqttClient client = new MqttClient(broker, clientId);

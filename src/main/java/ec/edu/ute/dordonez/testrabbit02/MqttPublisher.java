@@ -19,7 +19,7 @@ public class MqttPublisher {
     public static void main(String[] args) {
         int NUM_MSGS = 30;
         String broker = "tcp://192.168.56.101:1883";
-        String topic = "holamqtt";
+        String topic = "IoT";
         String clientId = "TestMqttPublisher_" + MqttClient.generateClientId();
 
         try {
