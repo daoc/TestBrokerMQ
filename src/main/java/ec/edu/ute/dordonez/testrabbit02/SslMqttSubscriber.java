@@ -86,8 +86,8 @@ public class SslMqttSubscriber {
         connOpts.setUserName("ute1");
         connOpts.setPassword("1ute".toCharArray());
         //options.setSocketFactory(sslContext.getSocketFactory());
-        connOpts.setSocketFactory(sslConnectionSocketFactory);
-        client.connect(connOpts);         
+//        connOpts.setSocketFactory(sslConnectionSocketFactory);
+//        client.connect(connOpts);         
         
         CloseableHttpClient client = HttpClients.custom()
           .setSSLSocketFactory(sslConnectionSocketFactory)
