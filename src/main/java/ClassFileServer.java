@@ -113,7 +113,8 @@ public class ClassFileServer extends ClassServer {
         //Para pruebas
         args = new String[3];
         args[0] = "2001";
-        args[1] = "C:\\Users\\Diego\\OneDrive\\UTE\\Investigacion\\ProyectosInvestigacion\\CEDIA2018";
+        //args[1] = "C:\\Users\\Diego\\OneDrive\\UTE\\Investigacion\\ProyectosInvestigacion\\CEDIA2018";
+        args[1] = "C:\\Users\\dordonez\\OneDrive\\UTE\\Investigacion\\ProyectosInvestigacion\\CEDIA2018";
         args[2] = "TLS";
         
         System.out.println(
@@ -163,13 +164,16 @@ public class ClassFileServer extends ClassServer {
                 SSLContext ctx;
                 KeyManagerFactory kmf;
                 KeyStore ks;
-                char[] passphrase = "passphrase".toCharArray();
-
+                //char[] passphrase = "passphrase".toCharArray();
+                char[] passphrase = "localhostServer".toCharArray();
+                
                 ctx = SSLContext.getInstance("TLS");
                 kmf = KeyManagerFactory.getInstance("SunX509");
-                ks = KeyStore.getInstance("JKS");
-
-                ks.load(new FileInputStream("testkeys"), passphrase);
+                //ks = KeyStore.getInstance("JKS");
+                ks = KeyStore.getInstance("PKCS12");
+                
+                //ks.load(new FileInputStream("testkeys"), passphrase);
+                ks.load(new FileInputStream("localhostServer.pkcs12"), passphrase);
                 kmf.init(ks, passphrase);
                 ctx.init(kmf.getKeyManagers(), null, null);
 
