@@ -22,19 +22,19 @@ public class Test2MQTT implements MqttCallback {
 
     public static void main(String[] args) throws MqttException {
         //Este bloque es necesario solo si el CA.crt no está incluido en la TrustStore del sistema
-        System.setProperty("javax.net.ssl.trustStore", "myTrustStore.jks");
+        System.setProperty("javax.net.ssl.trustStore", "IoT-TrustStore.jks");
         //System.setProperty("javax.net.ssl.trustStorePassword", "");//Solo poner cuando hay password
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         
         // Este bloque es necesario solo cuando el cliente también debe autenticarse
         System.setProperty("javax.net.ssl.keyStore", "diego.pkcs12");
-        System.setProperty("javax.net.ssl.keyStorePassword", "diego");
+        System.setProperty("javax.net.ssl.keyStorePassword", "diegojks");
         System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
         
         //Esto no parece ser necesario
         //System.setProperty("javax.net.ssl.clientAuthentication", "true");
         
-        MqttClient client = new MqttClient("ssl://192.168.56.101:8883", "TestClient");
+        MqttClient client = new MqttClient("ssl://pb:8883", "TestClient");
         
         /*
         Forma alternativa
