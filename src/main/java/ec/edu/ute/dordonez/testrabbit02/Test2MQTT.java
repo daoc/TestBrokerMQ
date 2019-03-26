@@ -26,10 +26,10 @@ public class Test2MQTT implements MqttCallback {
         //System.setProperty("javax.net.ssl.trustStorePassword", "");//Solo poner cuando hay password
         System.setProperty("javax.net.ssl.trustStoreType", "JKS");
         
-        // Este bloque es necesario solo cuando el cliente también debe autenticarse
-        System.setProperty("javax.net.ssl.keyStore", "diego.pkcs12");
-        System.setProperty("javax.net.ssl.keyStorePassword", "diegojks");
-        System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
+//        //Este bloque es necesario solo cuando el cliente también debe autenticarse
+//        System.setProperty("javax.net.ssl.keyStore", "diego.pkcs12");
+//        System.setProperty("javax.net.ssl.keyStorePassword", "diegojks");
+//        System.setProperty("javax.net.ssl.keyStoreType", "PKCS12");
         
         //Esto no parece ser necesario
         //System.setProperty("javax.net.ssl.clientAuthentication", "true");

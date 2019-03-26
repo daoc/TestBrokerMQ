@@ -3,24 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ute.dordonez.testrabbit02;
+package ute.griinf.iot.mqtt;
 
-/**
- *
- * @author dordonez@ute.edu.ec
- */
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
-public class MqttPublisher {
+/**
+ *
+ * @author dordonez@ute.edu.ec
+ */
+public class MqttPublisherSsl implements MqttCallback {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MqttException {
+        //Este bloque es necesario solo si el CA.crt no está incluido en la TrustStore del sistema
+        System.setProperty("javax.net.ssl.trustStore", "Client_GrIInf_TrustStore.jks");
+        System.setProperty("javax.net.ssl.trustStorePassword", "griinf");//Solo poner cuando hay password
+        System.setProperty("javax.net.ssl.trustStoreType", "JKS");
+          
         int NUM_MSGS = 30;
-        String broker = "tcp://localhost:1883";
+        String broker = "ssl://localhost:8883";
         String topic = "IoT";
-        String clientId = "TestMqttPublisher_" + MqttClient.generateClientId();
+        String clientId = "SslPublisher_" + MqttClient.generateClientId();
         String USERNAME = "testuser";
         String PASSWORD = "passwd";
 
@@ -32,9 +39,10 @@ public class MqttPublisher {
             client.connect(connOpts);
             System.out.println(clientId + " conectado al broker: " + broker);
             for(int i = 0; i < NUM_MSGS; i++) {
-                String payload = "Test Mqtt NoSSL Num: " + i;
+                String payload = "Test Mqtt SSL Num: " + i;
                 MqttMessage msg = new MqttMessage(payload.getBytes());
-                //QoS: el mensaje se envía... 0=máximo una vez ; 1=al menos una vez ; 2=exáctamente una vez ; **Rabbit convierte 2 en 1
+                //QoS: el mensaje se envía...
+                //0=máximo una vez ; 1=al menos una vez ; 2=exáctamente una vez ;
                 msg.setQos(0);
                 client.publish(topic, msg);
                 System.out.println("Publicado mensaje " + payload);
@@ -49,5 +57,20 @@ public class MqttPublisher {
             System.out.println("excep " + me);
             me.printStackTrace();
         }
+    }
+
+    @Override
+    public void connectionLost(Throwable thrwbl) {
+        System.out.println("Connection to MQTT broker lost!");
+    }
+
+    @Override
+    public void messageArrived(String string, MqttMessage mm) throws Exception {
+        System.out.println("Message received:\n\t" + new String(mm.getPayload()));
+    }
+
+    @Override
+    public void deliveryComplete(IMqttDeliveryToken imdt) {
+    	System.out.println("Delivery complete:\n\t" + imdt.isComplete());
     }
 }
