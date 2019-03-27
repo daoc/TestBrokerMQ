@@ -20,11 +20,11 @@ public class MqttPublisherOAuth2NoSsl {
         int NUM_MSGS = 30;
         String broker = "tcp://localhost:1883";
         String topic = "IoT";
-        String clientId = "TestMqttPublisher_" + MqttClient.generateClientId();
+        String clientId = "NoSslPublisher_" + MqttClient.generateClientId();
         String USERNAME = "oauth2";
         //obtener token actualizado
         //curl -X POST --insecure --user uno:onu -d grant_type=client_credentials http://localhost:7777/oauth/token
-        String TOKEN = "1fcbec2e-eb10-4cbf-8899-d3becf61c242";
+        String TOKEN = "6722d293-c93d-431d-9199-0829cbaacab6";
 
         try {
             MqttClient client = new MqttClient(broker, clientId);
