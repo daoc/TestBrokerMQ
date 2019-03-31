@@ -24,7 +24,7 @@ public class MqttPublisherOAuth2NoSsl {
         String USERNAME = "oauth2";
         //obtener token actualizado
         //curl -X POST --insecure --user uno:onu -d grant_type=client_credentials http://localhost:7777/oauth/token
-        String TOKEN = "6722d293-c93d-431d-9199-0829cbaacab6";
+        String TOKEN = "c0294250-7551-450e-a7e6-c244dab3f58e";
 
         try {
             MqttClient client = new MqttClient(broker, clientId);
