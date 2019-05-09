@@ -57,7 +57,7 @@ public class SSLSocketClient {
             SSLSocketFactory factory =
                 (SSLSocketFactory)SSLSocketFactory.getDefault();
             SSLSocket socket =
-                (SSLSocket)factory.createSocket("localhost", 8888);
+                (SSLSocket)factory.createSocket("localhost", 8760);
 
             /*
              * send http request
